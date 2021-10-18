@@ -1,0 +1,6 @@
+##Global Instructions-VAGRANT##
+
+
+Download Vagrant
+Download Virtualbox 
+Download Virtualbox Extension Pack
