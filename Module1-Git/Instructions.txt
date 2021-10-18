@@ -1,1 +1,8 @@
-Test
+##Global Instructions##
+
+
+Download GitBash
+Download Notepad++
+Download p4merge
+Join the project https://gitlab.com/GilbertFongan/trainingdevops
+
