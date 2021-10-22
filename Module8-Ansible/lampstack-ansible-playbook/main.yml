@@ -1,0 +1,42 @@
+---
+- hosts: all
+  remote_user: vagrant
+  become: yes 
+
+  tasks:
+   - name: Install httpd and php
+     yum: name={{ item }} state=present
+     with_items:
+      - httpd
+      - php
+      - php-mysql
+
+   - name: Start & Enable Apache Server to start on boot
+     service: name=httpd state=started enabled=yes
+
+   - name: Enable the firewall port for Apache
+     firewalld: port=80/tcp permanent=true state=enabled immediate=yes
+
+   - name: Install MySQL Software Repo
+     yum:
+       name: http://repo.mysql.com/mysql57-community-release-el7-10.noarch.rpm
+       state: present
+
+   - name: Install MySQL Database
+     yum: name=mysql-server state=present
+  
+   - name: Install MySQL-python
+     yum: name=MySQL-python state=present
+
+   - name: Start & Enable MySQL Server to start on boot
+     service: name=mysqld state=started enabled=yes
+
+   - name: Copying php file in the /var/www/html
+     copy:
+       src: /home/vagrant/lampstack-ansible-playbook/index.php
+       dest: /var/www/html/index.php
+  
+   - name: Restart service httpd, after copying index.php 
+     service:
+       name: httpd
+       state: restarted

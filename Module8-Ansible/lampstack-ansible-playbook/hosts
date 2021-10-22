@@ -1,0 +1,4 @@
+[webservers]
+172.17.11.5
+[webservers:vars]
+ansible_password=vagrant
