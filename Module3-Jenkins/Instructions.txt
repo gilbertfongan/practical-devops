@@ -2,3 +2,5 @@
 
 
 Clone the repository example with maven and TOMCAT https://gitlab.com/GilbertFongan/demo-jenkins
+clone this project from Gitlab https://gitlab.com/GilbertFongan/vagrant-project-vm.git 
+and change directory to the VagrantJenkins folder

@@ -4,3 +4,6 @@
 Download Vagrant
 Download Virtualbox 
 Download Virtualbox Extension Pack
+
+If you have the message "vagrant@127.0.0.1: Permission denied (publickey)" when 
+trying "vagrant ssh" command, you can this command to correct it "set VAGRANT_PREFER_SYSTEM_BIN=0".
