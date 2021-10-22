@@ -11,15 +11,15 @@
 This book presents all the practices for the mastery of open source devops tools. The examples are based on real application cases with different scenarios to demonstrate the power of these tools.
 
 You will master several tools for :
--Source code management with GIT
--Machine deployment with VAGRANT
--Implementation of continuous integration/continuous delivery (CI/CD) pipelines  with JENKINS
--Containerization with DOCKER
--System image creation with PACKER
--Container orchestration with KUBERNETES
--Automatic configuration management with ANSIBLE and CHEF
--Infrastructure monitoring with PROMETHEUS and GRAFANA
--Log analysis with ELK(ELASTICSEARCH-LOGSTASH-KIBANA)
+- [Source code management with GIT]
+- [Machine deployment with VAGRANT]
+- [Implementation of continuous integration/continuous delivery (CI/CD) pipelines  with JENKINS]
+- [Containerization with DOCKER]
+- [System image creation with PACKER]
+- [Container orchestration with KUBERNETES]
+- [Automatic configuration management with ANSIBLE and CHEF]
+- [Infrastructure monitoring with PROMETHEUS and GRAFANA]
+- [Log analysis with ELK(ELASTICSEARCH-LOGSTASH-KIBANA)]
 
 
 ## Support
