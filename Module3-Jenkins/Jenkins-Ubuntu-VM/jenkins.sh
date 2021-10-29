@@ -6,9 +6,9 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCEF32E745F2C3D5
 echo "Updating apt-get"
 sudo apt-get -y update 
 echo "Installing openjdk-jdk"
-sudo apt-get -y openjdk-8-jdk > /dev/null 2>&1
+sudo apt-get install -y openjdk-8-jdk > /dev/null 2>&1
 echo "Installing openjdk-jre"
-sudo apt-get -y openjdk-8-jre > /dev/null 2>&1
+sudo apt-get install -y openjdk-8-jre > /dev/null 2>&1
 echo "Installing git"
 sudo apt-get -y install git > /dev/null 2>&1
 echo "Installing git-ftp"
