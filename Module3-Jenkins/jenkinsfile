@@ -1,0 +1,49 @@
+pipeline {
+    agent none
+    stages {
+        stage('Source Repos') {
+            agent {
+                label 'master'
+            }
+            steps {
+                git 'https://gitlab.com/GilbertFongan/demo-jenkins'
+            }
+        }
+        stage('Build App') {
+            agent {
+                label 'master'
+            }
+            steps {
+                withMaven( jdk: 'LocalJAVA', maven: 'LocalMAVEN', mavenLocalRepo: 'java-tomcat-sample') 
+                {
+                    sh 'mvn -f java-tomcat-sample/pom.xml clean package'
+                }
+            }
+            post {
+                success {
+                        echo "Now Archiving the Artifacts...."
+                        archiveArtifacts artifacts: '**/*.war'
+                }
+            }
+        }
+        stage('Copy WAR to Prod') {
+            agent {
+                label 'slave-tomcat'
+            }
+            steps {
+                copyArtifacts filter: '**/*.war', fingerprintArtifacts: true, projectName: 'JavaSampleAppDeploy'
+            }
+        }
+        stage('Deploy on Prod') {
+            agent {
+                label 'slave-tomcat'
+            }
+            steps {
+                deploy adapters: [tomcat9(credentialsId: 'da94870a-07bc-4d72-bea2-6c7ccb90c61f', path: '', url: 'http://172.17.8.164:8080')], contextPath: null, onFailure: false, war: '**/*.war'
+            }
+        }
+    }
+}
+
+
+
