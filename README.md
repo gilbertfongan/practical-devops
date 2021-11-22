@@ -8,6 +8,7 @@
 
 ## Summary
 
+This book presents a technological development environment to initiate the reader to the use of DevOps tools to enable the efficient management of your infrastructure, the management of source code with integration and deployment of your applications, the use of containerization and container orchestration technologies, infrastructure monitoring, and finally the analysis and processing of your system logs through real application cases. This book has been written in the context of initiation and preparation for the Linux Profesionnal Institute DevOps Tools Engineer certification.
 This book presents all the practices for the mastery of open source devops tools. The examples are based on real application cases with different scenarios to demonstrate the power of these tools.
 
 You will master several tools for :
