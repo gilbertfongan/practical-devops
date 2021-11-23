@@ -25,7 +25,7 @@ You will master several tools for :
 
 ## Support
 
-All the practices carried out with the help of this manual have been successfully tested. In case you have difficulties in implementing any of the application examples, please follow the instructions for each module, if necessary contact us (gilbertfongan95@gmail.com).
+All the practices carried out with the help of this manual have been successfully tested. In case you have difficulties in implementing any of the application examples, please follow the instructions for each module, if necessary contact us (gilbert.toussido@gmail.com).
 
 
 
