@@ -1,4 +1,4 @@
-##Global Instructions-VAGRANT##
+**Global Instructions-VAGRANT
 
 
 Clone the repository example with maven and TOMCAT https://gitlab.com/GilbertFongan/demo-jenkins
@@ -6,7 +6,7 @@ clone this project from Gitlab https://gitlab.com/GilbertFongan/vagrant-project-
 and change directory to the VagrantJenkins folder
 
 
-*****INSTALL JAVA ON WINDOWS***************
+**INSTALL JAVA ON WINDOWS
 
 Step 0: Un-Install Older Version(s) of JDK/JRE
 It is recommend that you install only the latest JDK. Although you can install multiple versions of JDK/JRE concurrently, it is messy.
