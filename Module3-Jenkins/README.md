@@ -1,4 +1,4 @@
-**Global Instructions-VAGRANT**
+**Global Instructions-JENKINS**
 
 
 Clone the repository example with maven and TOMCAT https://gitlab.com/GilbertFongan/demo-jenkins
