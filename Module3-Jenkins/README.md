@@ -1,9 +1,8 @@
 **Global Instructions-JENKINS**
 
 
-Clone the repository example with maven and TOMCAT https://gitlab.com/GilbertFongan/demo-jenkins
-clone this project from Gitlab https://gitlab.com/GilbertFongan/vagrant-project-vm.git 
-and change directory to the VagrantJenkins folder
+Use this link to connect the CI Pipeline to the repository https://github.com/gilbertfongan/demo-jenkins
+
 
 
 **INSTALL JAVA ON WINDOWS**
