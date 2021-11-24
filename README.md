@@ -4,7 +4,6 @@
 
 ## Getting started
 
-![BOOK](/uploads/2918a82b034080018fdf9961a534f4ba/BOOK.PNG)
 ![Screenshot](BOOK.PNG)
 
 ## Summary
