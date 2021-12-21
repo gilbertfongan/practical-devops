@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "bento/centos-7"
   config.vm.provision "shell",
-	inline: "yum -y install git nano"
+	inline: "yum install git nano -y"
 	
 
   # Disable automatic box update checking. If you disable this, then
