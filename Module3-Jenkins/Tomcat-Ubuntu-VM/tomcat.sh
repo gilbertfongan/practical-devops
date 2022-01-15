@@ -36,10 +36,10 @@ java -version
 echo "Installing tomcat"
  
 cd /usr/local/
-wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz
-tar -xvf apache-tomcat-9.0.54.tar.gz
-mv apache-tomcat-9.0.54 tomcat
-rm -f apache-tomcat-9.0.54.tar.gz
+wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz
+tar -xvf apache-tomcat-9.0.56.tar.gz
+mv apache-tomcat-9.0.56 tomcat
+rm -f apache-tomcat-9.0.56.tar.gz
 
 cd /usr/local/tomcat
 chgrp -R tomcat conf
