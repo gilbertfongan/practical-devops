@@ -32,9 +32,13 @@ sudo chown -R prometheus:prometheus  /etc/prometheus/console_libraries
 echo "*********Remove the leftover files*********"
 rm -rf prometheus-2.2.1.linux-amd64.tar.gz prometheus-2.2.1.linux-amd64
 echo " *********Create service with systemd*********"
+<<<<<<< HEAD
 
 cat <<EOF | sudo tee /etc/prometheus/prometheus.yml
 
+=======
+cat <<EOF | sudo tee /etc/prometheus/prometheus.yml
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 global:
   scrape_interval:     15s
   evaluation_interval: 15s
@@ -51,6 +55,7 @@ scrape_configs:
   - job_name: 'node1'
     scrape_interval: 5s
     static_configs:
+<<<<<<< HEAD
       - targets: ['172.17.8.104:9100']
   - job_name: 'node2'
     scrape_interval: 5s
@@ -59,12 +64,26 @@ scrape_configs:
 
 EOF
 
+=======
+      - targets: [' 172.17.8.104:9100']
+  - job_name: 'node2'
+    scrape_interval: 5s
+    static_configs:
+      - targets: [' 172.17.8.105:9100']
+
+
+EOF
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 
 echo " *********Permissions and ownership*********"
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 
 echo " *********Service creation*********"
+<<<<<<< HEAD
 echo '
+=======
+cat <<EOF | sudo tee /etc/systemd/system/prometheus.service
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 [Unit]
 Description=Prometheus Monitoring
 Wants=network-online.target
@@ -82,8 +101,14 @@ ExecStart=/usr/local/bin/prometheus \
 ExecReload=/bin/kill -HUP $MAINPID
 
 [Install]
+<<<<<<< HEAD
 WantedBy=multi-user.target' > /etc/systemd/system/prometheus.service
 
+=======
+WantedBy=multi-user.target
+
+EOF
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 echo " *********Start at boot*********"
 sudo  systemctl daemon-reload
 sudo systemctl enable --now prometheus

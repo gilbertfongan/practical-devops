@@ -14,7 +14,11 @@ sudo chown node_exporter:node_exporter /usr/local/bin/node_exporter
 echo "*********Remove the leftover files*********"
 rm -rf node_exporter-1.0.1.linux-amd64.tar.gz node_exporter-1.0.1.linux-amd64
 echo "*********Create service with systemd*********"
+<<<<<<< HEAD
 echo '
+=======
+cat <<EOF | sudo tee /etc/systemd/system/node_exporter.service
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 [Unit]
 Description=Node Exporter
 Wants=network-online.target
@@ -49,8 +53,14 @@ SyslogIdentifier=node_exporter
 Restart=always
 
 [Install]
+<<<<<<< HEAD
 WantedBy=multi-user.target' > /etc/systemd/system/node_exporter.service
 
+=======
+WantedBy=multi-user.target
+
+EOF
+>>>>>>> 7360e37fce9bf6bf5470368f375402bedbac9402
 
 echo "*********Permissions and ownership*********"
 sudo chown -R node_exporter:node_exporter /etc/systemd/system/node_exporter.service
