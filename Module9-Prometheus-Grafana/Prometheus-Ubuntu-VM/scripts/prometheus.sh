@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
-echo "***INSTALLATION DE PROMETHEUS***"
+echo "****INSTALLATION DE PROMETHEUS****"
 #echo "*******Updates*********"
 #sudo apt-get update -y 
 echo "*********User creation*********"
