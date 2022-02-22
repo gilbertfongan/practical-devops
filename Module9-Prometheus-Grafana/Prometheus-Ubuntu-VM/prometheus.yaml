@@ -11,7 +11,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['172.17.8.104:9090']
-  - job_name: 'node_exporter'
+  - job_name: 'node1'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['172.17.8.104:9100']
+  - job_name: 'node2'
     scrape_interval: 5s
     static_configs:
       - targets: ['172.17.8.105:9100']

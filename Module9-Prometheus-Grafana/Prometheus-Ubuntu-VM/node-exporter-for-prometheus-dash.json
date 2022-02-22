@@ -42,7 +42,7 @@
     },
     {
       "type": "panel",
-      "id": "table-old",
+      "id": "table",
       "name": "Table (old)",
       "version": ""
     }
@@ -590,7 +590,7 @@
       "timeShift": null,
       "title": "Server Resource Overview【JOB：$job，Total：$total】",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "aliasColors": {
@@ -1467,7 +1467,7 @@
       ],
       "title": "【$show_hostname】：Disk Space Used Basic(EXT?/XFS)",
       "transform": "table",
-      "type": "table-old"
+      "type": "table"
     },
     {
       "cacheTimeout": null,
@@ -3940,7 +3940,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "1    Node Exporter for Prometheus Dashboard EN v20201010",
+  "title": "1     Node Exporter for Prometheus Dashboard EN 20201010",
   "uid": "xfpJB9FGz",
   "version": 2
 }
