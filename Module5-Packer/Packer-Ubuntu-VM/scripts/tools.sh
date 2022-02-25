@@ -1,7 +1,7 @@
 #!/bin/bash
 #echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 echo "*******Updates*********"
-#sudo apt-get update --fix-missing -y 
+sudo apt-get update -y 
 echo "*** INSTALL DOCKER ***"
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
