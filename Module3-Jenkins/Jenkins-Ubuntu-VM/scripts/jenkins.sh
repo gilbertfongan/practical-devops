@@ -1,4 +1,6 @@
 #!/bin/bash
+
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 echo "Adding apt-keys"
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
@@ -29,4 +31,6 @@ sleep 1m
 echo "Installing Jenkins Plugins"
 JENKINSPWD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
 echo $JENKINSPWD
-
+echo "***IP Config***"
+sudo apt install net-tools -y
+ifconfig
