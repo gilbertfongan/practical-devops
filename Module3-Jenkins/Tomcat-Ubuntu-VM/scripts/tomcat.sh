@@ -7,7 +7,7 @@
 ## First install wget
 ## Primeiro instale o wget
 
-
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 # Check if user has root privileges
 if [[ $EUID -ne 0 ]]; then
 echo "You must run the script as root or using sudo"
@@ -36,10 +36,14 @@ java -version
 echo "Installing tomcat"
  
 cd /usr/local/
-wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.56/bin/apache-tomcat-9.0.56.tar.gz
-tar -xvf apache-tomcat-9.0.56.tar.gz
-mv apache-tomcat-9.0.56 tomcat
-rm -f apache-tomcat-9.0.56.tar.gz
+wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.58/bin/apache-tomcat-9.0.58.tar.gz
+# If get 404 error not found, get new link here (new version tag of tomcat9) https://dlcdn.apache.org/tomcat/tomcat-9/
+#(new version tag of tomcat9)
+tar -xvf apache-tomcat-9.0.58.tar.gz
+#(new version tag of tomcat9)
+mv apache-tomcat-9.0.58 tomcat
+#(new version tag of tomcat9)
+rm -f apache-tomcat-9.0.58.tar.gz
 
 cd /usr/local/tomcat
 chgrp -R tomcat conf
@@ -105,3 +109,7 @@ systemctl enable tomcat
 
 ## Open in web browser:
 ## http://server_IP_address:8080
+
+echo "***IP Config***"
+sudo apt install net-tools -y
+ifconfig
