@@ -34,6 +34,8 @@ All the practices carried out with the help of this manual have been successfull
 
 ## Authors and acknowledgment
 
+FONGAN TOUSSIDO Gilbert began his engineering studies in Cameroon, more specifically at the National Advanced School of Posts, Telecommunications and TICs in Yaounde (SUP’PTIC) and then completed his studies in Tunisia at the Higher School of Communications of Tunis (SUP’COM) in 2017. He started working directly for IT service companies during his experience in Tunisia. Holder of several certifications in the IT field, he is also an active member of the LPI (Linux Professional Institute), a member of the African University Network (ITAUN) and has also been a member of Jury in several competitions namely at SITIC AFRICA-BAMA. Currently, he is a consultant and specialist in DevOps and Cloud and also provides training on Cloud (AWS, Azure) and DevOps technology.
+
 We would like to thank all  those who have allowed us to test these works to ensure that they are functional (especially our students during training).
 
 ## License
@@ -42,5 +44,5 @@ Open source projects.
 
 ## Project status
 
-We are continuously working to further enrich this book with many examples of real-world applications (Last Update 28/02/2022).
+We are continuously working to further enrich this book with many examples of real-world applications (Last Update: Febuary 2022).
 
