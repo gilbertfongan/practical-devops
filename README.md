@@ -44,5 +44,5 @@ Open source projects.
 
 ## Project status
 
-We are continuously working to further enrich this book with many examples of real-world applications (Last Update: Febuary 2022).
+We are continuously working to further enrich this book with many examples of real-world applications (Last Update: February 2022).
 
