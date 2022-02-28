@@ -32,7 +32,7 @@ All the following tools have been installed on a Windows 10 system.
 
 Tools                     | Versions
 --------------------------|-------
-Visual Studio Code Setup  | 1.64.2
+Visual Studio Code        | 1.64.2
 Git Bash                  | 2.35.1
 Vagrant                   | 2.2.18
 
