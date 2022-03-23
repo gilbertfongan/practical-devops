@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     
     config.vm.provision "shell" do |shell|
       shell.path = "scripts/jenkins.sh"
-      shell.path = "scripts/docker.sh"
+      #shell.path = "scripts/docker.sh"
       
     end
   
