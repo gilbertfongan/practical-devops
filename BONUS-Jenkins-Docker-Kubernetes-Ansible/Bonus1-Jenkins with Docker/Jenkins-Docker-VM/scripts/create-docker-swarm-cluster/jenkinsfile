@@ -1,0 +1,62 @@
+pipeline{
+    agent any
+     parameters {
+        string(name: 'DOCKER_MANAGER', defaultValue: '10.0.0.150', description: 'IP Address of Docker Manager Node')
+        choice(
+            choices: ['InitCluster' , 'LeaveCluster'],
+            description: '',
+            name: 'ACTION_CLUSTER')
+
+    }
+ 
+    stages {
+        
+        stage('Initialize Docker Swarm Cluster and network') {
+            when {
+                expression { params.ACTION_CLUSTER == 'InitCluster' }
+            }
+            steps {
+                script {
+                  sh "docker swarm init --advertise-addr ${params.DOCKER_MANAGER} --listen-addr ${params.DOCKER_MANAGER}"
+                  sh "docker network create -d overlay app-net"
+                  sh "docker network ls"
+                }
+            }
+        }
+        // to execute on another agent
+        /*stage('Joining Docker Swarm Cluster with worker ') {
+            steps {
+                script {
+                 sh 'docker swarm join --token xxxxxxxx 10.0.0.150:2377'
+                }
+            }
+        
+        }*/
+        stage('Leave Docker Swarm') {
+            when {
+                expression { params.ACTION_CLUSTER == 'LeaveCluster' }
+            }
+            steps {
+                script {
+                 sh 'docker swarm leave --force'
+                }
+            }
+        
+        }
+        stage(' Docker Swarm CLuster Info') {
+            when {
+                expression { params.ACTION_CLUSTER == 'InitCluster' }
+            }
+            steps {
+                script {
+                 sh 'docker node ls'
+                }
+            }
+        
+        }
+        
+        
+        
+       
+    }
+}

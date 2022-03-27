@@ -18,11 +18,12 @@ Vagrant.configure("2") do |config|
       vb.gui = false
       vb.cpus = 1
       vb.memory = "2048"
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
     
     config.vm.provision "shell" do |shell|
       shell.path = "scripts/jenkins.sh"
-      #shell.path = "scripts/docker.sh"
+      shell.path = "scripts/docker.sh"
       
     end
   
