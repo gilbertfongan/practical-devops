@@ -1,13 +1,13 @@
 pipeline{
     agent any
     parameters {
-        string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: 'Lien Gitlab du projet à conteneuriser avec Docker')
+        string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: '[Create job only]Lien Gitlab du projet à conteneuriser avec Docker')
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
-        string(name: 'SOURCE_PORT', defaultValue: '3000', description: 'Source port of the Service')
-        string(name: 'TARGET_PORT', defaultValue: '8090', description: 'Target port of the Service')
-        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1', description: 'Image Docker')
-        string(name: 'NETWORK_NAME', defaultValue: 'app-net', description: 'Name of Docker Network')
-        string(name: 'REPLICAS_NUMBER', defaultValue: '2', description: 'Number of replicas of service to deploy')
+        string(name: 'SOURCE_PORT', defaultValue: '3000', description: '[Create job only]Source port of the Service')
+        string(name: 'TARGET_PORT', defaultValue: '8090', description: '[Create job only]Target port of the Service')
+        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1', description: '[Create/Update job only]Image Docker')
+        string(name: 'NETWORK_NAME', defaultValue: 'app-net', description: '[Create job only]Name of Docker Network')
+        string(name: 'REPLICAS_NUMBER', defaultValue: '2', description: '[Create job only]Number of replicas of service to deploy')
         choice(
             choices: ['NewDeploy Service' , 'Update Service', 'Delete Service' ],
             description: '',
