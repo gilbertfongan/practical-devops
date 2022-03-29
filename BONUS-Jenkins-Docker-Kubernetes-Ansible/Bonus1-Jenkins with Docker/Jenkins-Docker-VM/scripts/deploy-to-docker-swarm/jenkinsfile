@@ -1,4 +1,3 @@
-def user = env.BUILD_USER
 def specificCause = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')
 if (specificCause) {
     println("Executed by user $specificCause.userName")
@@ -16,7 +15,7 @@ pipeline{
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
         string(name: 'SOURCE_PORT', defaultValue: '3000', description: '[Create job only]Source port of the Service')
         string(name: 'TARGET_PORT', defaultValue: '8090', description: '[Create job only]Target port of the Service')
-        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1', description: '[Create/Update job only]Image Docker')
+        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1 gilbertfongan/nodejsapp-1.0', description: '[Create/Update job only]Image Docker')
         string(name: 'NETWORK_NAME', defaultValue: 'app-net', description: '[Create job only]Name of Docker Network')
         string(name: 'REPLICAS_NUMBER', defaultValue: '2', description: '[Create job only]Number of replicas of service to deploy')
         choice(
@@ -34,14 +33,9 @@ pipeline{
         stage('Check Repos') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
-                /*wrap([$class: 'BuildUser']) {
-                sh 'echo "${BUILD_USER}"'
-                sh 'echo "${BUILD_USER_ID}"'
-                sh 'echo "${BUILD_USER_EMAIL}"'
-                }*/
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
-                    currentBuild.description = "Service : ${SERVICE_NAME}"
+                    currentBuild.description = "Service:${SERVICE_NAME} Image: ${DOCKER_IMAGE} "
                 }
              
             }
