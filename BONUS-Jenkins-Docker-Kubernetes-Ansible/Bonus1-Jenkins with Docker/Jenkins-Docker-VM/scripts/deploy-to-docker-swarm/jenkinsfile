@@ -40,7 +40,7 @@ pipeline{
                 sh 'echo "${BUILD_USER_EMAIL}"'
                 }*/
                 script {
-                    currentBuild.displayName = "#${BUILD_NUMBER} - ${BUILD_USER}"
+                    currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
                     currentBuild.description = "Service : ${SERVICE_NAME}"
                 }
              
