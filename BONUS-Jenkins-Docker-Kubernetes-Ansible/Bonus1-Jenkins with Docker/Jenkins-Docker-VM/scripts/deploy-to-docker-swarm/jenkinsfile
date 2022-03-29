@@ -25,11 +25,11 @@ pipeline{
         stage('Check Repos') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
-                wrap([$class: 'BuildUser']) {
+                /*wrap([$class: 'BuildUser']) {
                 sh 'echo "${BUILD_USER}"'
                 sh 'echo "${BUILD_USER_ID}"'
                 sh 'echo "${BUILD_USER_EMAIL}"'
-                }
+                }*/
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${BUILD_USER}"
                     currentBuild.description = "Service : ${SERVICE_NAME}"
