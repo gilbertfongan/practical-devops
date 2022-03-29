@@ -13,6 +13,9 @@ pipeline{
             description: '',
             name: 'TYPE_DEPLOY')
     }
+
+    currentBuild.displayName = "#${BUILD_NUMBER}-${BUILD_USER}"
+    currentBuild.description = "Service : ${SERVICE_NAME}"
  
     stages {
         stage('Check Repos') {
