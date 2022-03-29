@@ -14,13 +14,15 @@ pipeline{
             name: 'TYPE_DEPLOY')
     }
 
-    currentBuild.displayName = "#${BUILD_NUMBER}-${BUILD_USER}"
-    currentBuild.description = "Service : ${SERVICE_NAME}"
+    
  
     stages {
+        
         stage('Check Repos') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                currentBuild.displayName = "#${BUILD_NUMBER}-${BUILD_USER}"
+                currentBuild.description = "Service : ${SERVICE_NAME}"
              
             }
         }
