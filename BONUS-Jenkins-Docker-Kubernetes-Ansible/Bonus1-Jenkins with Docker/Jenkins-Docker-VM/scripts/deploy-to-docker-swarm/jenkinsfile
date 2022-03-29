@@ -14,6 +14,8 @@ pipeline{
             name: 'TYPE_DEPLOY')
     }
 
+    def user = env.BUILD_USER
+
     
  
     stages {
@@ -22,7 +24,7 @@ pipeline{
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
                 script {
-                    currentBuild.displayName = "#${BUILD_NUMBER}-${BUILD_USER}"
+                    currentBuild.displayName = "#${BUILD_NUMBER} - $user"
                     currentBuild.description = "Service : ${SERVICE_NAME}"
                 }
              
