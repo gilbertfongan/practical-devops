@@ -33,7 +33,7 @@ pipeline{
         stage('Check Repos') {
             steps{
                 //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: "${DOCKER_FILE}"]]]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'hello-world']]]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
                 //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'hello-world']], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
