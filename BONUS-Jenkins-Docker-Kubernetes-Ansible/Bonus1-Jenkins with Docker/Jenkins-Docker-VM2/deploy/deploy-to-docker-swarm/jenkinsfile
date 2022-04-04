@@ -1,0 +1,130 @@
+def specificCause = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')
+if (specificCause) {
+    println("Executed by user $specificCause.userName")
+    //echo "specificCause: $specificCause"
+    //echo "specificCause: ${specificCause.userId[0]}"
+    echo "specificCause: $specificCause.userName"
+    echo "specificCause: ${specificCause.userName}"
+    //echo "specificCause: $specificCause.shortDescription"
+}
+
+pipeline{
+    agent any
+    parameters {
+        string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: '[Create job only]Lien Gitlab du projet à conteneuriser avec Docker')
+        string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
+        string(name: 'PUBLISHED_PORT', defaultValue: '8081', description: '[Create job only]Published port of the Service on Physical host')
+        string(name: 'TARGET_PORT', defaultValue: '80', description: '[Create job only]Target port of the Service within the container')
+        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1 gilbertfongan/nodejsapp-1.0', description: '[Create/Update job only]Image Docker')
+        string(name: 'NETWORK_NAME', defaultValue: 'app-net', description: '[Create job only]Name of Docker Network')
+        string(name: 'REPLICAS_NUMBER', defaultValue: '2', description: '[Create job only]Number of replicas of service to deploy')
+        choice(
+            choices: ['NewDeploy Service' , 'Update Service', 'Delete Service' ],
+            description: '',
+            name: 'TYPE_DEPLOY')
+    }
+
+ 
+
+    
+ 
+    stages {
+        
+        stage('Check Repos') {
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                script {
+                    currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
+                    currentBuild.description = "Service:${SERVICE_NAME} - Image: ${DOCKER_IMAGE} "
+                }
+             
+            }
+        }
+        stage('Build Docker Image') {
+            when {
+                expression { params.TYPE_DEPLOY == 'NewDeploy Service' || params.TYPE_DEPLOY == 'Update Service'}
+            }
+            steps {
+                script {
+                  sh 'docker build -t gilbertfongan/nodejsapp-1.0:latest .'
+                }
+            }
+        }
+        stage('Push Docker Image to DockerHub') {
+            when {
+                expression { params.TYPE_DEPLOY == 'NewDeploy Service' || params.TYPE_DEPLOY == 'Update Service'}
+            }
+            steps {
+                script {
+                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                    sh 'docker login -u gilbertfongan -p ${dockerhubpwd}'
+                 }  
+                 sh 'docker push gilbertfongan/nodejsapp-1.0:latest'
+                }
+            }
+        
+        }
+        
+        stage(' Docker Swarm CLuster Info') {
+            steps {
+                script {
+                 sh 'docker node ls'
+                }
+            }
+        
+        }
+        
+        stage(' Deploy Service to Docker Swarm') {
+            when {
+                expression { params.TYPE_DEPLOY == 'NewDeploy Service' }
+            }
+            steps {
+                script {
+                 sh "docker service create --name=${params.SERVICE_NAME} --network ${params.NETWORK_NAME} -p ${params.PUBLISHED_PORT}:${params.TARGET_PORT} --replicas ${params.REPLICAS_NUMBER} ${params.DOCKER_IMAGE}"
+                 sh "docker service ps ${params.SERVICE_NAME}"
+                 sh 'docker service ls'
+                }
+            }
+        }
+        
+        stage(' Update Service to Docker Swarm') {
+        
+             when {
+                expression { params.TYPE_DEPLOY == 'Update Service' }
+            }
+            steps {
+                script {
+                 sh "docker service update --image ${params.DOCKER_IMAGE} --update-parallelism 2 --update-delay 20s ${params.SERVICE_NAME}   "
+                 sh "docker service ps ${params.SERVICE_NAME}"
+                 sh 'docker service ls'
+                }
+            }
+        }
+        stage(' Delete Service to Docker Swarm') {
+            
+            when {
+                expression { params.TYPE_DEPLOY == 'Delete Service' }
+            }
+            steps {
+                script {
+                 sh "docker service rm  ${params.SERVICE_NAME}  "
+                 sh 'docker service ls'
+                }
+            }
+        
+        }
+    
+        /*stage('Docker Swarm service Info') {
+            steps {
+                script {
+                 sh "docker service ps ${params.SERVICE_NAME}"
+                 sh 'docker service ls'
+                 
+                }
+            }
+        
+        }*/
+        
+       
+    }
+}
