@@ -33,7 +33,8 @@ pipeline{
         stage('Check Repos') {
             steps{
                 //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE}"]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE}"], [$class: 'SubmoduleOption', disableSubmodules: false, parentCredentials: false, recursiveSubmodules: false, reference: "${params.DOCKER_FILE}", trackingSubmodules: false]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
+                //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE}"]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
                     currentBuild.description = "Service:${SERVICE_NAME} - Image: ${DOCKER_IMAGE} "
@@ -47,7 +48,7 @@ pipeline{
             }
             steps {
                 script {
-                  sh "docker build -t ${DOCKER_IMAGE} . "
+                  sh "docker build -t gilbertfongan/nodejsapp-1.0:latest . "
                 }
             }
         }
