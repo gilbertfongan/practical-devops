@@ -49,3 +49,5 @@ Openjdk                   | 8
 ## Issues and troubleshooting
 
 - Run first "# vagrant up --provision" with [shell.path = "scripts/docker.sh"] commented in vagrantfile to install only Jenkins, then uncomment the same line and run "# vagrant reload --provision" to install Docker : When having error on booting VM
+
+- When running the pipeline, if you have a matching response below (Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/json": dial unix /var/run/docker.sock: connect: permission denied), please enter the command below (sudo usermod -a -G docker jenkins) to allow the jenkins user to run the docker commands in sudo mode.
