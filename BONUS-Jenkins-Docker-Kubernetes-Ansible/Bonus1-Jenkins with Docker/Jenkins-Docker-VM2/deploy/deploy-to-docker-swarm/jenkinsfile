@@ -11,7 +11,7 @@ if (specificCause) {
 pipeline{
     agent any
     parameters {
-        string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: '[Create job only]Lien Gitlab du projet à conteneuriser avec Docker')
+        string(name: 'DOCKER_FILE', defaultValue: 'hello-world', description: '[Create job only] Sous-dossier du projet à conteneuriser avec Docker sur le lien https://gitlab.com/GilbertFongan/docker-repos ')
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
         string(name: 'PUBLISHED_PORT', defaultValue: '8081', description: '[Create job only]Published port of the Service on Physical host')
         string(name: 'TARGET_PORT', defaultValue: '80', description: '[Create job only]Target port of the Service within the container')
@@ -32,7 +32,8 @@ pipeline{
         
         stage('Check Repos') {
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE}"]], userRemoteConfigs: [[url: 'https://gitlab.com/GilbertFongan/docker-repos.git']]])
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
                     currentBuild.description = "Service:${SERVICE_NAME} - Image: ${DOCKER_IMAGE} "
@@ -46,7 +47,7 @@ pipeline{
             }
             steps {
                 script {
-                  sh 'docker build -t gilbertfongan/nodejsapp-1.0:latest .'
+                  sh "docker build -t ${DOCKER_IMAGE} . "
                 }
             }
         }
@@ -57,9 +58,9 @@ pipeline{
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u gilbertfongan -p ${dockerhubpwd}'
+                    sh "docker login -u gilbertfongan -p ${dockerhubpwd}"
                  }  
-                 sh 'docker push gilbertfongan/nodejsapp-1.0:latest'
+                 sh "docker push ${DOCKER_IMAGE}"
                 }
             }
         
