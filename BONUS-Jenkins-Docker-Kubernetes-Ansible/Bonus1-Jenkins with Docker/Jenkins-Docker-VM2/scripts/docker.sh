@@ -1,6 +1,6 @@
 #!/bin/bash
+#echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 echo "*** INSTALL DOCKER ***"
-echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 echo "***Docker Version***"
