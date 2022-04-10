@@ -1,0 +1,31 @@
+def specificCause = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')
+if (specificCause) {
+    println("Executed by user $specificCause.userName")
+    echo "specificCause: $specificCause.userName"
+    echo "specificCause: ${specificCause.userName}"
+    
+}
+
+pipeline{
+    agent any
+ 
+    stages {
+        
+        stage(' Docker Swarm CLuster Info') {
+            
+            steps {
+                script {
+                    currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
+                    currentBuild.description = "Cluster Status & Services "
+                    sh 'docker node ls'
+                    sh 'docker service ls'
+                }
+            }
+        
+        }
+        
+        
+        
+       
+    }
+}
