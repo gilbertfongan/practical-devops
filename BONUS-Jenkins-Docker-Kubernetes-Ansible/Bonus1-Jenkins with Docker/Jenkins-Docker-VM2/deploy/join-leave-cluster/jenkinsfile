@@ -1,4 +1,4 @@
-def directory = "${env.WORKSPACE}/DEVOPS-LABS/MODULE4-DOCKER/job/create-docker-swarm-cluster" // change name here 
+def directory = "${env.WORKSPACE}/DEVOPS-LABS/MODULE4-DOCKER/create-docker-swarm-cluster" // change name here 
 
 pipeline{
     agent any
