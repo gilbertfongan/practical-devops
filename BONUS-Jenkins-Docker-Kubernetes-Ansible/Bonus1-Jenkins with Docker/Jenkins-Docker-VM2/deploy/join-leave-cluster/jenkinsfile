@@ -1,0 +1,85 @@
+def directory = "${env.WORKSPACE}/DEVOPS-LABS/MODULE4-DOCKER/job/create-docker-swarm-cluster" // change name here 
+
+pipeline{
+    agent any
+     parameters {
+        string(name: 'DOCKER_MANAGER', defaultValue: '172.10.10.10', description: 'IP Address of Docker Manager Node')
+        string(name: 'DOCKER_WORKER', defaultValue: '172.10.10.11', description: 'IP Address of Docker Worker Node')
+        
+        choice(
+            choices: ['joinCluster' , 'LeaveCluster'],
+            description: '',
+            name: 'ACTION_CLUSTER')
+
+    }
+ 
+    stages {
+        
+        stage('capture console output'){
+              script {
+                def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(
+                Integer.parseInt(env.BUILD_NUMBER)).logFile.text
+                // copy the log in the job's own workspace
+                writeFile file: directory + "/buildConsolelog.txt",
+                text: logContent
+            }
+            def consoleOutput = readFile directory + '/buildConsolelog.txt'
+            echo 'Console output saved in the buildConsolelog file'
+            echo '--------------------------------------'
+            echo consoleOutput
+            echo '--------------------------------------'
+
+        }
+        /*
+        stage('Add VM to  Docker Swarm Cluster ') {
+            when {
+                expression { params.ACTION_CLUSTER == 'InitCluster' }
+            }
+            steps {
+                script {
+                  sh "docker swarm init --advertise-addr ${params.DOCKER_MANAGER} --listen-addr ${params.DOCKER_MANAGER}"
+                  sh "docker network create -d overlay app-net"
+                  sh "docker network ls"
+                }
+            }
+        }
+        */
+        // to execute on another agent
+        /*stage('Joining Docker Swarm Cluster with worker ') {
+            steps {
+                script {
+                 sh 'docker swarm join --token xxxxxxxx 10.0.0.150:2377'
+                }
+            }
+        
+        }*/
+        /*
+        stage('Leave Docker Swarm') {
+            when {
+                expression { params.ACTION_CLUSTER == 'LeaveCluster' }
+            }
+            steps {
+                script {
+                 sh 'docker swarm leave --force'
+                }
+            }
+        
+        }
+        */
+        stage(' Docker Swarm CLuster Info') {
+            when {
+                expression { params.ACTION_CLUSTER == 'InitCluster' }
+            }
+            steps {
+                script {
+                 sh 'docker node ls'
+                }
+            }
+        
+        }
+        
+        
+        
+       
+    }
+}
