@@ -1,4 +1,5 @@
 def directory = "${env.WORKSPACE}/DEVOPS-LABS/MODULE4-DOCKER/create-docker-swarm-cluster" // change name here 
+def consoleOutput = readFile directory + '/buildConsolelog.txt'
 
 pipeline{
     agent any
@@ -25,11 +26,11 @@ pipeline{
                 text: logContent
                 }
                  //def consoleOutput = readFile directory + '/buildConsolelog.txt'
-                sh'echo test'
-                echo 'Console output saved in the buildConsolelog file'
-                echo '--------------------------------------'
-                echo readFile directory + '/buildConsolelog.txt'
-                echo '--------------------------------------'
+                sh 'echo test'
+                sh "echo Console output saved in the buildConsolelog file"
+                sh "echo --------------------------------------"
+                sh "echo consoleOutput"
+                sh "echo --------------------------------------"
 
 
            
