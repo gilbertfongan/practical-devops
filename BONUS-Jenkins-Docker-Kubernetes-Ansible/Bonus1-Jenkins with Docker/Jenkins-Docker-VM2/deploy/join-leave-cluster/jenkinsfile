@@ -6,11 +6,11 @@ pipeline{
      parameters {
         string(name: 'DOCKER_MANAGER', defaultValue: '172.10.10.10', description: 'IP Address of Docker Manager Node')
         string(name: 'DOCKER_WORKER', defaultValue: '172.10.10.11', description: 'IP Address of Docker Worker Node')
-        
+        /*
         choice(
             choices: ['joinCluster' , 'LeaveCluster'],
             description: '',
-            name: 'ACTION_CLUSTER')
+            name: 'ACTION_CLUSTER')*/
 
     }
  
@@ -74,6 +74,7 @@ pipeline{
         
         }
         */
+        /*
         stage(' Docker Swarm CLuster Info') {
             when {
                 expression { params.ACTION_CLUSTER == 'InitCluster' }
@@ -85,6 +86,7 @@ pipeline{
             }
         
         }
+        */
         
         
         
