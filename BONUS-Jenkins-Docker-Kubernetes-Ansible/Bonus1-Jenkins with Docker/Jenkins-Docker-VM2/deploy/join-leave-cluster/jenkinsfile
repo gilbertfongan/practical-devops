@@ -24,12 +24,15 @@ pipeline{
                 writeFile file: directory + "/buildConsolelog.txt",
                 text: logContent
                 }
+                 //def consoleOutput = readFile directory + '/buildConsolelog.txt'
+                sh'echo test'
+                echo 'Console output saved in the buildConsolelog file'
+                echo '--------------------------------------'
+                echo readFile directory + '/buildConsolelog.txt'
+                echo '--------------------------------------'
 
-            //def consoleOutput = readFile directory + '/buildConsolelog.txt'
-            echo 'Console output saved in the buildConsolelog file'
-            echo '--------------------------------------'
-            echo readFile directory + '/buildConsolelog.txt'
-            echo '--------------------------------------'
+
+           
             
             }
 
