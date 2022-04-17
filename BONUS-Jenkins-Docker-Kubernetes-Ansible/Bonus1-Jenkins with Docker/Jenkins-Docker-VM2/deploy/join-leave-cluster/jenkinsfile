@@ -25,11 +25,11 @@ pipeline{
                 text: logContent
                 }
 
-    def consoleOutput = readFile directory + '/buildConsolelog.txt'
-    echo 'Console output saved in the buildConsolelog file'
-    echo '--------------------------------------'
-    echo consoleOutput
-    echo '--------------------------------------'
+            def consoleOutput = readFile directory + '/buildConsolelog.txt'
+            echo 'Console output saved in the buildConsolelog file'
+            echo '--------------------------------------'
+            echo consoleOutput
+            echo '--------------------------------------'
             
             }
 
