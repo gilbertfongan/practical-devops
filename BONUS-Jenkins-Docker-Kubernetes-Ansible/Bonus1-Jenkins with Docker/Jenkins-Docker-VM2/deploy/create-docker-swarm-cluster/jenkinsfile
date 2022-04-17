@@ -1,5 +1,3 @@
-def directory = "${env.WORKSPACE}" // change name here
-def consoleOutput = readFile directory + '/buildConsolelog.txt'
 
 pipeline{
     agent any
@@ -56,31 +54,6 @@ pipeline{
                 }
             }
         
-        }
-
-        stage('capture console output'){
-            steps{
-                script {
-                sh "${env.WORKSPACE}"
-                def logContent = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(
-                Integer.parseInt(env.BUILD_NUMBER)).logFile.text
-                // copy the log in the job's own workspace
-                writeFile file: directory + "/buildConsolelog.txt",
-                text: logContent
-                }
-
-                sh "${env.WORKSPACE}"
-                sh 'echo test'
-                sh "echo Console output saved in the buildConsolelog file"
-                sh "echo --------------------------------------"
-                sh "echo consoleOutput"
-                sh "echo --------------------------------------"
-
-
-           
-            
-            }
-
         }
         
         
