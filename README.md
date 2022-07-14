@@ -6,6 +6,10 @@
 
 ![BOOK](/uploads/2918a82b034080018fdf9961a534f4ba/BOOK.PNG)
 
+## pre-requisites 
+
+It is necessary to have basic knowledge of linux.
+
 ## Summary
 
 This book presents a technological development environment to initiate the reader to the use of DevOps tools to enable the efficient management of your infrastructure, the management of source code with integration and deployment of your applications, the use of containerization and container orchestration technologies, infrastructure monitoring, and finally the analysis and processing of your system logs through real application cases. This book has been written in the context of initiation and preparation for the Linux Profesionnal Institute DevOps Tools Engineer certification.
