@@ -41,3 +41,7 @@ Vagrant                   | 2.2.18
 
 - "vagrant@127.0.0.1: Permission denied (publickey)" : when 
 trying "vagrant ssh" command, you can this command to correct it "set VAGRANT_PREFER_SYSTEM_BIN=0".
+
+- "Vagrant was unable to mount Virtualbox shared folders. This is is usually because the filesystem vboxsf is not available. This filesystem is made available via the VirtualBox Guest Additions and kernel module." : when trying "vagrant up' command, you can this command to correct it 
+"vagrant vbguest –-do install –-no-cleanup"
+"vagrant reload".

@@ -36,8 +36,9 @@ sudo mysql -e "SHOW DATABASES";
 
 # Download Starter Content
 echo "Install Download content from Gitlab"
+echo "The content is already present in the current directory"
 cd /vagrant
-sudo -u vagrant wget -q https://gitlab.com/GilbertFongan/vagrant-lamp/-/raw/master/files/index.html
-sudo -u vagrant wget -q https://gitlab.com/GilbertFongan/vagrant-lamp/-/raw/master/files/info.php
+#sudo -u vagrant wget -q https://gitlab.com/GilbertFongan/vagrant-lamp/-/raw/master/files/index.html
+#sudo -u vagrant wget -q https://gitlab.com/GilbertFongan/vagrant-lamp/-/raw/master/files/info.php
 
 sudo service httpd restart
