@@ -3,6 +3,9 @@
 ### URL com Screencast de Instalação do Tomcat9
 ### http://www.linuxpro.com.br/2017/04/instalando-tomcat-9-no-ubuntu/
 ### Link: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
+## Var definitions
+
+TOMCAT_VERSION = "9.0.65"
 
 ## First install wget
 ## Primeiro instale o wget
@@ -36,14 +39,14 @@ java -version
 echo "Installing tomcat"
  
 cd /usr/local/
-wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.58/bin/apache-tomcat-9.0.58.tar.gz
+wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
 # If get 404 error not found, get new link here (new version tag of tomcat9) https://dlcdn.apache.org/tomcat/tomcat-9/
 #(new version tag of tomcat9)
-tar -xvf apache-tomcat-9.0.58.tar.gz
+tar -xvf apache-tomcat-9.0.65.tar.gz
 #(new version tag of tomcat9)
-mv apache-tomcat-9.0.58 tomcat
+mv apache-tomcat-9.0.65 tomcat
 #(new version tag of tomcat9)
-rm -f apache-tomcat-9.0.58.tar.gz
+rm -f apache-tomcat-9.0.65.tar.gz
 
 cd /usr/local/tomcat
 chgrp -R tomcat conf
