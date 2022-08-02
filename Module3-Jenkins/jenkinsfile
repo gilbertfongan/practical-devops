@@ -6,6 +6,7 @@ pipeline {
                 label 'master'
             }
             steps {
+                // Use this or your own forked repository
                 git 'https://gitlab.com/GilbertFongan/demo-jenkins'
             }
         }
@@ -14,7 +15,8 @@ pipeline {
                 label 'master'
             }
             steps {
-                withMaven( jdk: 'LocalJAVA', maven: 'LocalMAVEN', mavenLocalRepo: 'java-tomcat-sample') 
+                //Make sure to have the same name of Env VAR for JDK and MAVEN
+                withMaven( jdk: 'JenkinsJDK', maven: 'JenkinsMAVEN', mavenLocalRepo: 'java-tomcat-sample') 
                 {
                     sh 'mvn -f java-tomcat-sample/pom.xml clean package'
                 }
@@ -39,6 +41,7 @@ pipeline {
                 label 'slave-tomcat'
             }
             steps {
+                //Change the below line with your own generated script via pipeline syntax
                 deploy adapters: [tomcat9(credentialsId: 'da94870a-07bc-4d72-bea2-6c7ccb90c61f', path: '', url: 'http://172.17.8.164:8080')], contextPath: null, onFailure: false, war: '**/*.war'
             }
         }
