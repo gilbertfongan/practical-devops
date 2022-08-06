@@ -1,0 +1,28 @@
+{
+    "builders": [
+      {
+        "commit": "true",
+        "image": "ubuntu:20.04",
+        "type": "docker"
+      }
+    ],
+    "post-processors": [
+      [
+        {
+          "repository": "gilbertfongan/terraformcli",
+          "tags": ["1.2.0"],
+          "type": "docker-tag"
+        }
+      ]
+    ],
+    "provisioners": [
+      {
+        "script": "terraform.sh",
+        "type": "shell"
+      },
+      {
+        "script": "awscli.sh",
+        "type": "shell"
+      }
+    ]
+  }

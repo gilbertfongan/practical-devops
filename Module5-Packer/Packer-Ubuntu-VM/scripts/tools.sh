@@ -2,6 +2,16 @@
 #echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 echo "*******Updates*********"
 sudo apt-get update -y 
+echo "*******Create first_image directory under /home/vagrant*********"
+sudo mkdir first_image
+echo "*******Copy project files to /home/vagrant*********"
+cp -R /vagrant/docker-ubuntu.pkr.hcl /home/vagrant/first_image
+echo "*******Create second_image directory under /home/vagrant*********"
+sudo mkdir second_image
+echo "*******Copy project files to /home/vagrant*********"
+cp -R /vagrant/docker-terraform.json /home/vagrant/second_image
+cp -R /vagrant/terraform.sh /home/vagrant/second_image
+cp -R /vagrant/awscli.sh /home/vagrant/second_image
 echo "*** INSTALL DOCKER ***"
 sudo curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
