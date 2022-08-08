@@ -4,7 +4,7 @@
 
 ## Getting started
 
-![BOOK](/uploads/2918a82b034080018fdf9961a534f4ba/BOOK.PNG)
+![BOOK2](/uploads/2ce138ee3d48dcfd8b4f4296739a3a08/BOOK2.PNG)
 
 ## pre-requisites 
 
