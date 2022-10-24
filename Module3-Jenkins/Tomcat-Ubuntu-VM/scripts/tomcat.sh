@@ -5,7 +5,8 @@
 ### Link: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
 ## Var definitions
 
-TOMCAT_VERSION = "9.0.65"
+TOMCAT_VERSION="9.0.68"
+
 
 ## First install wget
 ## Primeiro instale o wget
@@ -23,7 +24,7 @@ echo "Installing java"
 groupadd tomcat && useradd -M -s /bin/nologin -g tomcat -d /usr/local/tomcat tomcat
 
 cd /usr/local/
-wget --header 'Cookie: oraclelicense=a' http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.tar.gz
+wget --header 'Cookie: oraclelicense=a' http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-linux-x64.tar.gz > /dev/null 2>&1
 tar -xf jre-8u131-linux-x64.tar.gz && rm -f jre-8u131-linux-x64.tar.gz
 mv jre1.8.0_131 java
 
@@ -39,15 +40,19 @@ java -version
 echo "Installing tomcat"
  
 cd /usr/local/
-wget --no-check-certificate https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+echo "###Downloading tomcat"
+wget --no-check-certificate "https://dlcdn.apache.org/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz" > /dev/null 2>&1
 # If get 404 error not found, get new link here (new version tag of tomcat9) https://dlcdn.apache.org/tomcat/tomcat-9/
 #(new version tag of tomcat9)
-tar -xvf apache-tomcat-9.0.65.tar.gz
+echo "###Extracting archive tomcat"
+tar -xvf "apache-tomcat-${TOMCAT_VERSION}.tar.gz"
 #(new version tag of tomcat9)
-mv apache-tomcat-9.0.65 tomcat
+echo "###Moving to tomcat directory"
+mv "apache-tomcat-${TOMCAT_VERSION}" tomcat
 #(new version tag of tomcat9)
-rm -f apache-tomcat-9.0.65.tar.gz
-
+echo "###Deleting downloaded archive"
+rm -f "apache-tomcat-${TOMCAT_VERSION}.tar.gz"
+echo "###Operations..."
 cd /usr/local/tomcat
 chgrp -R tomcat conf
 chmod g+rwx conf
