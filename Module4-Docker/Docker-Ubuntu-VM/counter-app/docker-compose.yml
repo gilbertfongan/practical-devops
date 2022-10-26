@@ -2,7 +2,6 @@ version: "3.5"
 services:
   web-fe:
     build: .
-    command: python app.py
     ports:
       - target: 5000
         published: 5000
