@@ -16,6 +16,10 @@ echo "***Docker Compose Version***"
 sudo docker-compose -version
 echo "***ADD JENKINS TO DOCKER GROUP***"
 sudo usermod -a -G docker jenkins
+echo "***Force to execute Docker Command without sudo ***"
+sudo chmod 666 /var/run/docker.sock
+echo "***Restart Docker Service***"
+sudo systemctl restart docker
 echo "***IP Config***"
 sudo apt install net-tools -y
 ifconfig
