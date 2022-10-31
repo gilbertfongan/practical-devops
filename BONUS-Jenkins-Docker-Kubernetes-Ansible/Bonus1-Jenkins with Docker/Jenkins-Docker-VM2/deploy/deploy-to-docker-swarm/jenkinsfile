@@ -14,7 +14,7 @@ pipeline{
     agent any
     parameters {
         string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: '[Create job only]Lien Gitlab du projet à conteneuriser avec Docker')
-        string(name: 'DOCKER_FILE_LOC', defaultValue: 'app2', description: '[Create/Update job only] Dossier contenant l\'application avec Dockerfile')
+        string(name: 'GIT_REPOS_DOCKER_FILE', defaultValue: 'app2', description: '[Create/Update job only] Dossier contenant l\'application avec Dockerfile')
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
         string(name: 'PUBLISHED_PORT', defaultValue: '8081', description: '[Create job only]Published port of the Service on Physical host')
         string(name: 'TARGET_PORT', defaultValue: '80', description: '[Create job only]Target port of the Service within the container')
@@ -44,7 +44,7 @@ pipeline{
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
                     currentBuild.description = "Service:${SERVICE_NAME} - Image: ${DOCKER_IMAGE} "
-                    sh "cd ${params.DOCKER_FILE_LOC}"
+                    sh "cd ${params.GIT_REPOS_DOCKER_FILE}"
                 }
                 }
              
@@ -57,7 +57,7 @@ pipeline{
             steps {
                 dir ('workir'){
                 script {
-                  sh "cd ${params.DOCKER_FILE_LOC} && docker build -t ${params.DOCKER_IMAGE} ."
+                  sh "cd ${params.GIT_REPOS_DOCKER_FILE} && docker build -t ${params.DOCKER_IMAGE} ."
                 }
                 }
             }
