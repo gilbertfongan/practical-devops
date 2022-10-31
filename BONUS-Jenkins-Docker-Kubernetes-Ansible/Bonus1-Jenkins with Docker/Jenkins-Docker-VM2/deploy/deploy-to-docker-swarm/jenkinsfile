@@ -64,8 +64,9 @@ pipeline{
         }
         stage('Push Docker Image to DockerHub') {
             when {
-                expression { params.TYPE_DEPLOY == 'NewDeploy Service' || params.TYPE_DEPLOY == 'Update Service' || params.PUSH_DOCKER_HUB==true}
+                expression { params.TYPE_DEPLOY == 'NewDeploy Service' || params.TYPE_DEPLOY == 'Update Service' }
             }
+            if (params.PUSH_DOCKER_HUB==true){
             steps {
                 dir ('workir'){
                 script {
@@ -75,6 +76,7 @@ pipeline{
                  sh "docker push ${params.DOCKER_IMAGE}"
                 }
                 }
+            }
             }
         
         }
