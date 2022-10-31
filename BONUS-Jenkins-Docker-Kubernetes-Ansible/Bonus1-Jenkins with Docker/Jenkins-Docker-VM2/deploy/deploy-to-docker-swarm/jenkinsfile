@@ -18,7 +18,7 @@ pipeline{
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
         string(name: 'PUBLISHED_PORT', defaultValue: '8081', description: '[Create job only]Published port of the Service on Physical host')
         string(name: 'TARGET_PORT', defaultValue: '80', description: '[Create job only]Target port of the Service within the container')
-        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1 gilbertfongan/nodejsapp-1.0', description: '[Create/Update job only]Image Docker à créer')
+        string(name: 'DOCKER_IMAGE', defaultValue: 'gilbertfongan/demo:v1 ', description: '[Create/Update job only]Image Docker à créer')
         booleanParam(name: 'PUSH_DOCKER_HUB', defaultValue: false, description: 'Push to Docker Hub')
         string(name: 'NETWORK_NAME', defaultValue: 'app-net', description: '[Create job only]Name of Docker Network')
         string(name: 'REPLICAS_NUMBER', defaultValue: '2', description: '[Create job only]Number of replicas of service to deploy')
