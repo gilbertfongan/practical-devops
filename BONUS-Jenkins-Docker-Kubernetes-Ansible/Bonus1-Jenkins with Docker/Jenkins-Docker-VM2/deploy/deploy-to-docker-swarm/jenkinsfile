@@ -14,7 +14,7 @@ pipeline{
     agent any
     parameters {
         string(name: 'GIT_REPOS', defaultValue: 'https://gitlab.com/GilbertFongan/jenkins-kubernetes-example', description: '[Create job only]Lien Gitlab du projet à conteneuriser avec Docker')
-        string(name: 'DOCKER_FILE_LOC', defaultValue: 'app1', description: '[Create/Update job only] Dossier contenant l\'application avec Dockerfile')
+        string(name: 'DOCKER_FILE_LOC', defaultValue: 'app2', description: '[Create/Update job only] Dossier contenant l\'application avec Dockerfile')
         string(name: 'SERVICE_NAME', defaultValue: 'test', description: 'Name of the Service')
         string(name: 'PUBLISHED_PORT', defaultValue: '8081', description: '[Create job only]Published port of the Service on Physical host')
         string(name: 'TARGET_PORT', defaultValue: '80', description: '[Create job only]Target port of the Service within the container')
