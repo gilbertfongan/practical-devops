@@ -51,7 +51,7 @@ pipeline{
             }
             steps {
                 script {
-                  sh "docker build -t ${params.DOCKER_IMAGE}:latest ."
+                  sh "docker build -t ${params.DOCKER_IMAGE} ."
                 }
             }
         }
