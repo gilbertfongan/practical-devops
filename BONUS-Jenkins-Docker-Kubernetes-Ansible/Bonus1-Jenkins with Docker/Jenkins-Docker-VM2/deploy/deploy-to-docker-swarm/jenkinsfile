@@ -39,10 +39,12 @@ pipeline{
                 dir ('workir'){
 
                 
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE_LOC}"]], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.DOCKER_FILE_LOC}"]], userRemoteConfigs: [[url: "${params.GIT_REPOS}"]]])
+                git branch: 'main', url: "${params.GIT_REPOS}"
                 script {
                     currentBuild.displayName = "#${BUILD_NUMBER} - ${specificCause.userName}"
                     currentBuild.description = "Service:${SERVICE_NAME} - Image: ${DOCKER_IMAGE} "
+                    sh "cd ${params.DOCKER_FILE_LOC}"
                 }
                 }
              
