@@ -67,11 +67,13 @@ pipeline{
                 expression { params.TYPE_DEPLOY == 'NewDeploy Service' || params.TYPE_DEPLOY == 'Update Service' || params.PUSH_DOCKER_HUB==true}
             }
             steps {
+                dir ('workir'){
                 script {
                  withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
                     sh 'docker login -u gilbertfongan -p ${dockerhubpwd}'
                  }  
                  sh "docker push ${params.DOCKER_IMAGE}"
+                }
                 }
             }
         
