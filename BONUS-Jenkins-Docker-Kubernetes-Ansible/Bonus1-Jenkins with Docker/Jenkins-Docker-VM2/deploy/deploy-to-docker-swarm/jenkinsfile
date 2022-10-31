@@ -57,6 +57,7 @@ pipeline{
             steps {
                 dir ('workir'){
                 script {
+                  sh "cd ${params.DOCKER_FILE_LOC}"
                   sh "docker build -t ${params.DOCKER_IMAGE} ."
                 }
                 }
