@@ -29,7 +29,7 @@ sudo systemctl start jenkins
 echo "Jenkins service status"
 sudo systemctl status jenkins
 sleep 1m
-echo "Installing Jenkins Plugins"
+echo "Initial Admin Paswword"
 JENKINSPWD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
 echo $JENKINSPWD
 echo "***IP Config***"
