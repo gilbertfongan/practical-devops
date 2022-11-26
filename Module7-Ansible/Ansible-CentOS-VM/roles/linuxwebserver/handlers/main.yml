@@ -1,0 +1,8 @@
+---
+# handlers file for linuxwebserver
+
+- name: openport80
+  service: name=httpd state=started
+
+- name: startwebserver
+  firewalld: port={{http_server_port}}/tcp permanent=true state=enabled immediate=yes

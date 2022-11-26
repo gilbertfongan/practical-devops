@@ -1,0 +1,8 @@
+---
+# tasks file for linuxwebserver
+
+- name: Install Apache Web Server
+  yum: name={{webserver_pkg}} state=latest
+  notify:
+    - openport80
+    - startwebserver
