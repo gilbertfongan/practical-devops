@@ -53,3 +53,11 @@ Tools (Node2)             | Versions
 - "No Package kernel-devel-3.10.0-1127.el7.x86_64 available. Error : Nothing to do" : Because of version of Vagrant plugins. Downgrade from Vbguest 0.30/0.29/0.28 to 0.21.
 vagrant plugin uninstall vagrant-vbguest
 vagrant plugin install vagrant-vbguest --plugin-version 0.21 
+
+
+
+## EXAMPLE DEPLOYING WITH ANSIBLE ROLE
+
+Folder : 
+- deploy_with_role : containing playbook which call the role
+- roles : Defined role to be copy in /etc/ansible/roles/

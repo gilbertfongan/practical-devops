@@ -1,0 +1,18 @@
+---
+- hosts: linuxservers
+  remote_user : vagrant
+  become: yes
+  roles:
+    - webserver
+
+- hosts: ansibleclient2
+  remote_user : vagrant
+  become: yes
+  tasks:
+    - name: upload index page
+      uri:
+        url: http://www.purple.com/faq.html
+        method : GET
+        dest : /var/www/html/index.html
+        force_basic_auth: yes
+        validate_certs : no
