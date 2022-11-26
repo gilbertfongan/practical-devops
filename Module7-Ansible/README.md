@@ -56,8 +56,3 @@ vagrant plugin install vagrant-vbguest --plugin-version 0.21
 
 
 
-## EXAMPLE DEPLOYING WITH ANSIBLE ROLE
-
-Folder : 
-- deploy_with_role : containing playbook which call the role
-- roles : Defined role to be copy in /etc/ansible/roles/
