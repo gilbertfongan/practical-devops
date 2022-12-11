@@ -12,7 +12,7 @@ It is necessary to have basic knowledge of linux.
 
 ## Instructions for use
 
-- Understand the DevOps concepts through the course material (PRACTICAL DEVOPS BOOK.pdf) available here. 
+- Understand the DevOps concepts through the course material (PRACTICAL DEVOPS TOOLS.pdf) available here. 
 
 - Complete the practical cases (with the book available on Amazon : https://www.amazon.fr/dp/B0B5PK5P9V/ ) as you go along in order to consolidate the notions learned in the course material
 
