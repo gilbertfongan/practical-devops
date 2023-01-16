@@ -57,7 +57,7 @@ Openjdk                   | 8
 
 ## Getting started
 
-### Create Docker Swarm
+
 
 After booting the machine, you can check if the Jenkins service is running (There has been an automatic provisioning of Docker and Jenkins via Vagrant at startup)
 
@@ -82,6 +82,8 @@ Creation of the first administrator user (http://172.10.10.10:8080/)
 Jenkins Dashboard
 
 ![6-jenkins-dashboard](/uploads/37d3abc36bb5948b6ca1a46c78b243c2/6-jenkins-dashboard.png)
+
+### Create Docker Swarm
 
 Go to "new item" and create the first job
 
@@ -119,3 +121,44 @@ Then Build to create the Docker Swarm Cluster : Go the output of current build, 
 ![12-Jenkins-success-build](/uploads/79c3a3d501b3ffa8a5ace010ffc7f669/12-Jenkins-success-build.png)
 
 The Docker Swarm is activated and you have only one active Node (node1)
+
+
+### Deploy to Docker Swarm
+
+Go to "new item" and create the second job
+
+![13-Jenkins-deploy-job-creation](/uploads/a79e114c562339e35741b582a89f4981/13-Jenkins-deploy-job-creation.png)
+
+Configure the job with these parameters (Already filled on Jenkinsfile) : 
+
+- GIT_REPOS_DOCKER_FILE (default value : app2), type : String
+- SERVICE_NAME (default value : test), type : String
+- PUBLISHED_PORT (default value : 8081), type : Number
+- TARGET_PORT (default value : 80), type : Number
+- DOCKER_IMAGE (default value : gilbertfongan/demo:v1), type : String
+- NETWORK_NAME (default value : app-net), type : String
+- REPLICAS_NUMBER (default value : 2), type : Number
+- TYPE_DEPLOY (values : NewDeploy Service, Update Service, Delete Service ), type : choice
+- PUSH_DOCKER_HUB (default value: false), type : Boolean
+
+
+
+Pipeline Definition -> "Pipeline script from SCM" :
+Repository URL = https://gitlab.com/GilbertFongan/devops-book-labs.git
+Script Path = BONUS-Jenkins-Docker-Kubernetes-Ansible/Bonus1-Jenkins with Docker/Jenkins-Docker-VM2/deploy/deploy-to-docker-swarm/jenkinsfile
+
+![14-Jenkins-git-scm-deploy-on-swarm-config](/uploads/60566e7ca6147d67b55de7c4341228d6/14-Jenkins-git-scm-deploy-on-swarm-config.png)
+
+And Save the configuration...
+
+Second Build
+
+Being on the pipeline, you can launch the first build through the "launch a build with parameters" option
+
+![15-jenkins-pipeline-ready-deploy-to-swarm](/uploads/6e7d7ef36909a83f3286f206d64a9866/15-jenkins-pipeline-ready-deploy-to-swarm.png)
+
+Fill in the desired parameters
+
+Then Build to deploy an Application on the Docker Swarm Cluster : Go the output of current build, then clikc on "Console Output" (for this example my current build is number 11)
+
+![16-jenkins-deploy-to-swarm-success](/uploads/4830191724162e73d577170eec6e86ab/16-jenkins-deploy-to-swarm-success.png)
