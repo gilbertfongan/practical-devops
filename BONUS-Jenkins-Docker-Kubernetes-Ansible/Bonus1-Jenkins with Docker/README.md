@@ -57,6 +57,8 @@ Openjdk                   | 8
 
 ## Getting started
 
+# Create Docker Swarm
+
 After booting the machine, you can check if the Jenkins service is running (There has been an automatic provisioning of Docker and Jenkins via Vagrant at startup)
 
 ![Jenkins-service-status](/uploads/dc7d3e7259bb8b0a502e02cc92350cdd/Jenkins-service-status.png)
