@@ -103,3 +103,17 @@ And Save the configuration...
 
 
 First Build
+
+Being on the pipeline, you can launch the first build through the "launch a build with parameters" option
+
+![10-Jenkins-pipeline-ready](/uploads/f015bfc34899c9281c87caf9d372402b/10-Jenkins-pipeline-ready.png)
+
+Fill in the desired parameters
+
+![11-Jenkins-build-ready-and-filled](/uploads/7a984d2c9fd8f18f02ce20b9176edc86/11-Jenkins-build-ready-and-filled.png)
+
+Then Build to create the Docker Swarm Cluster : Go the output of current build, then clikc on "Console Output" (for this example my current build is number 12)
+
+![12-Jenkins-success-build](/uploads/79c3a3d501b3ffa8a5ace010ffc7f669/12-Jenkins-success-build.png)
+
+The Docker Swarm is activated and you have only one active Node (node1)
