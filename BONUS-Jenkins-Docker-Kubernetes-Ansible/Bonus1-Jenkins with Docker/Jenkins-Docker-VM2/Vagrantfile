@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
 		node1_config.vm.network "private_network", ip:"172.10.10.10"
 		node1_config.vm.provider :virtualbox do |vb|
 			vb.customize ["modifyvm", :id, "--memory", "2024"]
-			vb.customize ["modifyvm", :id, "--cpus", "1"]
+			vb.customize ["modifyvm", :id, "--cpus", "2"]
 			vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		end
 		node1_config.vm.provision "shell", path: "scripts/jenkins.sh"
