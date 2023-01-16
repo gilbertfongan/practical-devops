@@ -55,7 +55,7 @@ Openjdk                   | 8
 - If you have an connection timeout when booting the VM and an error on type "kernel panic not syncing attempted to kill the idle task" on the console, it will be necessary to upgrade the number of CPU on Vagrantfile (Example : From 1 to 2)
 
 
-## Tests
+## Getting started
 
 After booting the machine, you can check if the Jenkins service is running (There has been an automatic provisioning of Docker and Jenkins via Vagrant at startup)
 
@@ -73,6 +73,33 @@ Installation running
 ![4-Jenkins-Installation-running](/uploads/4f84fdcebc8c9c24f27c7704ffc1606a/4-Jenkins-Installation-running.png)
 
 
-Creation of the first administrator user
+Creation of the first administrator user (http://172.10.10.10:8080/)
 
 ![5-Jenkins-first-admin-user](/uploads/d1959be41024fec94ccb64112bf5ffa7/5-Jenkins-first-admin-user.png)
+
+Jenkins Dashboard
+
+![6-jenkins-dashboard](/uploads/37d3abc36bb5948b6ca1a46c78b243c2/6-jenkins-dashboard.png)
+
+Go to "new item" and create the first job
+
+![7-create-first-job](/uploads/d35b3e6a3db804d8e9c8948def98f4db/7-create-first-job.png)
+
+Configure the job with these parameters (Already filled on Jenkinsfile) : 
+
+- DOCKER_MANAGER (default value : 10.0.0.150), type : String
+
+- ACTION_CLUSTER(values : InitCluster, LeaveCluster), type : choice
+
+![8-Jenkins-add-parameter](/uploads/4dbeb40d44680335a8aa61e2abe471b8/8-Jenkins-add-parameter.png)
+
+Pipeline Definition -> "Pipeline script from SCM" :
+Repository URL = https://gitlab.com/GilbertFongan/devops-book-labs.git
+Script Path = BONUS-Jenkins-Docker-Kubernetes-Ansible/Bonus1-Jenkins with Docker/Jenkins-Docker-VM2/deploy/create-docker-swarm-cluster/jenkinsfile
+
+![9-Jenkins-pipeline-scm](/uploads/06eac2d89e27f719caf7cc3534a6b84a/9-Jenkins-pipeline-scm.png)
+
+And Save the configuration...
+
+
+First Build
