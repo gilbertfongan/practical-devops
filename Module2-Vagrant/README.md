@@ -45,3 +45,5 @@ trying "vagrant ssh" command, you can this command to correct it "set VAGRANT_PR
 - "Vagrant was unable to mount Virtualbox shared folders. This is is usually because the filesystem vboxsf is not available. This filesystem is made available via the VirtualBox Guest Additions and kernel module." : when trying "vagrant up' command, you can this command to correct it 
 "vagrant vbguest –-do install –-no-cleanup"
 "vagrant reload".
+
+- If you have an connection timeout when booting the VM and an error on type "kernel panic not syncing attempted to kill the idle task" on the console, it will be necessary to upgrade the number of CPU on Vagrantfile (Example : From 1 to 2)

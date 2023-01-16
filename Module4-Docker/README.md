@@ -51,4 +51,4 @@ Docker                    | 20.10.8
 
 ## Issues and troubleshooting
 
-- 
+- If you have an connection timeout when booting the VM and an error on type "kernel panic not syncing attempted to kill the idle task" on the console, it will be necessary to upgrade the number of CPU on Vagrantfile (Example : From 1 to 2)

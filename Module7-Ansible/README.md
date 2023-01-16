@@ -53,3 +53,5 @@ Tools (Node2)             | Versions
 - "No Package kernel-devel-3.10.0-1127.el7.x86_64 available. Error : Nothing to do" : Because of version of Vagrant plugins. Downgrade from Vbguest 0.30/0.29/0.28 to 0.21.
 vagrant plugin uninstall vagrant-vbguest
 vagrant plugin install vagrant-vbguest --plugin-version 0.21 
+
+- If you have an connection timeout when booting the VM and an error on type "kernel panic not syncing attempted to kill the idle task" on the console, it will be necessary to upgrade the number of CPU on Vagrantfile (Example : From 1 to 2)
