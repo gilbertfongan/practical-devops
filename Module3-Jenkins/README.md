@@ -35,7 +35,7 @@ Tools (Jenkins)           | Versions
 --------------------------|-------
 Jenkins                   | 2.336
 Git                       | 2.25.1
-Openjdk                   | 8
+Openjdk                   | 11
 
 - Tomcat node
 
