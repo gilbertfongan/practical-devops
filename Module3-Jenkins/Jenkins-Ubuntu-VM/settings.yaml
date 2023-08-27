@@ -1,0 +1,10 @@
+---
+
+software:
+  box: bento/ubuntu-20.04
+  boot_timeout : 300
+
+nodes:
+  ip1 : 172.17.8.163
+  cpu : 2
+  memory : 2024
