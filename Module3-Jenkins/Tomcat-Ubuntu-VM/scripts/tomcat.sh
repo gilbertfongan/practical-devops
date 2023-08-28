@@ -5,7 +5,7 @@
 ### Link: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
 ## Var definitions
 
-TOMCAT_VERSION="9.0.68"
+TOMCAT_VERSION="9.0.80"
 
 
 ## First install wget
