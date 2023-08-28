@@ -4,7 +4,7 @@
 ### http://www.linuxpro.com.br/2017/04/instalando-tomcat-9-no-ubuntu/
 ### Link: https://www.digitalocean.com/community/tutorials/how-to-install-apache-tomcat-8-on-centos-7
 ## Var definitions
-
+# Check the updated version here -> https://dlcdn.apache.org/tomcat/tomcat-9
 TOMCAT_VERSION="9.0.80"
 
 
