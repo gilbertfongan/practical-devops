@@ -5,20 +5,24 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+require "yaml"
+settings = YAML.load_file "settings.yaml"
+
+
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-20.04"
+  config.vm.box = settings["software"]["box"]
   
 
   config.vm.define :tomcat do |tomcat_config|
 		tomcat_config.vm.host_name = "tomcat"
-		tomcat_config.vm.network "private_network", ip:"172.17.8.164"
+		tomcat_config.vm.network "private_network", ip:settings["nodes"]["ip1"]
 		
 	end
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
-    vb.cpus = 2
-    vb.memory = "1548"
+    vb.cpus = settings["nodes"]["cpu"]
+    vb.memory = settings["nodes"]["memory"]
   end
   
   config.vm.provision "shell" do |shell|
