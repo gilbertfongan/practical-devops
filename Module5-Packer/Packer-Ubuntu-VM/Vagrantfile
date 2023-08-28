@@ -1,14 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require "yaml"
+settings = YAML.load_file "settings.yaml"
+
 Vagrant.configure(2) do |config|
-	config.vm.box = "bento/ubuntu-20.04"
+	config.vm.box = settings["software"]["box"]
 	
 	config.vm.define :node1 do |node1_config|
 		node1_config.vm.host_name = "node1"
-		node1_config.vm.network "private_network", ip:"172.122.1.25"
+		node1_config.vm.network "private_network", ip:settings["node1"]["ip"]
 		node1_config.vm.provider :virtualbox do |vb|
-			vb.customize ["modifyvm", :id, "--memory", "2024"]
-			vb.customize ["modifyvm", :id, "--cpus", "2"]
+			vb.customize ["modifyvm", :id, "--memory", settings["node1"]["memory"]]
+			vb.customize ["modifyvm", :id, "--cpus", settings["node1"]["cpu"]]
 			vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		end
 	end
